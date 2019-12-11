@@ -3,6 +3,7 @@ from django.utils.html import format_html
 
 from django.utils.translation import gettext_lazy as _
 from contacts.models import Person, Email, Address, Phone
+from import_export.admin import ImportExportModelAdmin
 
 admin.site.site_header = _('Addressbook')
 admin.site.index_title = _('Dashboards')
@@ -27,7 +28,7 @@ class EmailInline(admin.TabularInline):
 
 
 @admin.register(Person)
-class PersonAdmin(admin.ModelAdmin):
+class PersonAdmin(ImportExportModelAdmin):
     list_display = ['first_name', 'last_name', 'date_of_birth', 'field_born_in_90', 'field_pesel']
     list_display_links = ['first_name', 'last_name']
     ordering = ['first_name', 'last_name']
